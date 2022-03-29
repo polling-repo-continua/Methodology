@@ -39,8 +39,7 @@ In this example, we will use http://wearelucid.io as the exploit server.
 		redirect_uri=https://valid.server.com/oauth-callback@http://wearelucid.io
 		redirect_uri=https://valid.server.com/oauth-callback.http://wearelucid.io
 		```
-
-or combinations of the above as well
+	or combinations of the above as well
 
     - Try reversing the above combinations e.g
 
