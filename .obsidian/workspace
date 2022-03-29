@@ -1,0 +1,97 @@
+{
+  "main": {
+    "id": "3af24737f0874a7e",
+    "type": "split",
+    "children": [
+      {
+        "id": "de69da2e7e69b08b",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Hunting/OAuth/Resources.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "14828fe6954df586",
+    "type": "split",
+    "children": [
+      {
+        "id": "246183e16bc4ca15",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c6281d308dd555dd",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "a8d9383e1f71a04e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "892b5c77f7f1fa22",
+    "type": "split",
+    "children": [
+      {
+        "id": "e1f0b5319b7cfe07",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "583351a7c59d3117",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Hunting/OAuth/Resources.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "de69da2e7e69b08b",
+  "lastOpenFiles": [
+    "Hunting/OAuth/Resources.md",
+    "Hunting/OAuth/Checklist.md",
+    "VulnerabilityTesting/OAuth/Resources.md",
+    "VulnerabilityTesting/OAuth/Checklist.md"
+  ]
+}
