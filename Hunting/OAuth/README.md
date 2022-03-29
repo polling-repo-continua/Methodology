@@ -30,6 +30,7 @@ In this example, we will use http://wearelucid.io as the exploit server.
 	- Changing the value of the request_uri parameter to an entirely different server that you control (Burp collaborator or a VPS) but with the same oauth directory
 	- Try keeping the original redirect_uri, but appending a second one with your exploit server `redirect_uri=https://valid.server.com/oath-callback&redirect_uri=http://wearelucid.io/oauth-callback`
 	- Try appending values onto the end of the valid redirect uri parameter. Typical SSRF bypasses are good to try...
+
 	```
 	redirect_uri=https://valid.server.com/oauth-callback&http://wearelucid.io
 	redirect_uri=https://valid.server.com/oauth-callback#http://wearelucid.io
@@ -38,19 +39,27 @@ In this example, we will use http://wearelucid.io as the exploit server.
 	redirect_uri=https://valid.server.com/oauth-callback@http://wearelucid.io
 	redirect_uri=https://valid.server.com/oauth-callback.http://wearelucid.io
 	```
-		or combinations of the above as well
+
+or combinations of the above as well
+
     - Try reversing the above combinations e.g
+
 ```
 redirect_uri=https://wearelucid.io/oauth-callback&@https://valid.server.com
 ```
+
     - Attempt to configure a subdomain on your attack server with the name of the valid server e.g.
+
 ```
 redirect_uri=http://valid.server.com.wearelucid.io/oauth-callback
 ```
+
     - On the off chance that any URI with localhost in it's name is allowed, try this as well
+
 ```
 redirect_uri=http://localhost.wearelucid.io/oauth-callback
 ```
+
 4) In addition to the above tests, try changing the response_mode= parameter from query to fragment, or vice versa. You may run into an entirely different validation schema in different modes. For example if you try the response_mode=web_message value, a wider range of subdomains may be allowed in the redirect_uri parameter. If you're feeling ambitious, go through the above bypasses again to see if there is any difference. 
 
 **To prove exploitation**
