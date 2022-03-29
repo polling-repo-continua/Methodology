@@ -89,3 +89,8 @@ If it's implicit grant....
 1) Host the above Javascript code on your exploit server (or whatever code you deem works in this situation). 
 2) Manually visit the same vulnerable OAuth request as the victim. You should see the access token in the exploit server logs.
 3) As the attacker, try to make a request that only the logged in victim should be able to see the response to. Add the stolen code in the `Authorization: Bearer (stolen_code)` header to observer gaining unauthorized access to sensitive functionality.
+
+
+### Resources
+
+[Resources](https://github.com/djislucid/Methodology/Resources.md)
